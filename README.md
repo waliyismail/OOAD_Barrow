@@ -10,4 +10,4 @@
 5) LIEW CHIN ONN (1161104321)
 
 ## Google docs Documentation 
-<https://docs.google.com/document/d/1cqHVDgYyLae8n7xoQ74lBiG4l78HOTbGVDl1qOA_GAk/edit?usp=sharing>
+<shorturl.at/asKRX>
