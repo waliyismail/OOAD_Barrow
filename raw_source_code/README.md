@@ -1,1 +1,37 @@
 put all the pieces of source file here, later we compile together after we finalise
+
+class Chevron extends Piece{
+    public Chevron(char color){
+        super(color);
+
+        if(color == 'r'){
+            ImageIcon bChevron =new ImageIcon("../Webale Chess\\Pieces/blue pieces/chevron.png");
+            this.setIcon(bChevron);
+        }
+        else {
+            ImageIcon rChevron =new ImageIcon("../Webale Chess\\Pieces/red pieces/chevron.png");
+            this.setIcon(rChevron);
+        }
+    }
+
+
+   
+    public void nextPossibleMoves(){
+
+        possibleMoves.clear();
+
+        int x = position.x;
+        int y = position.y;
+        possibleMoves.add(new Point(x-2, y+1));
+        possibleMoves.add(new Point(x+2, y+1));
+
+        possibleMoves.add(new Point(x+1, y+2));
+        possibleMoves.add(new Point(x-1, y+2));
+        
+        possibleMoves.add(new Point(x+2, y-1));
+        possibleMoves.add(new Point(x-2, y-1));
+        
+        possibleMoves.add(new Point(x+1, y-2));
+        possibleMoves.add(new Point(x-1, y-2));
+        }
+        }
