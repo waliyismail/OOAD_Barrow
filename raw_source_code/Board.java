@@ -14,7 +14,7 @@ public class Board extends JFrame implements ActionListener
     private JButton loadButton = new JButton("Load");
     int r0=0,r1=1,r2=2,r3=3,r4=4,r5=5,r=6,r7=7;
     int c0=0,c1=1,c2=2,c3=3,c4=4,c5=5,c6=6;
-    ImageIcon bChevron =new ImageIcon("../Webale Chess\\Pieces/blue pieces/chevron.png");
+    ImageIcon bChevron =new ImageIcon("Pieces/bchevron.png");
     /**
      * Constructor for objects of class Board
      * Create a tiles with JButton 
