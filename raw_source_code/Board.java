@@ -16,6 +16,8 @@ public class Board extends JFrame implements ActionListener
     int c0=0,c1=1,c2=2,c3=3,c4=4,c5=5,c6=6;
     ImageIcon bChevron =new ImageIcon("Pieces/bchevron.png");
     ImageIcon rChevron =new ImageIcon("Pieces/rchevron.png");
+    ImageIcon rSun =new ImageIcon("Pieces/rsun.png");
+    ImageIcon bSun =new ImageIcon("Pieces/bsun.png");
     /**
      * Constructor for objects of class Board
      * Create a tiles with JButton 
@@ -49,6 +51,8 @@ public class Board extends JFrame implements ActionListener
         }
         
     }
+        tiles[0][3].setIcon(rSun);
+        tiles[7][3].setIcon(bSun);
         tiles[7][2].setIcon(bChevron);
         tiles[7][4].setIcon(bChevron);
         tiles[0][2].setIcon(rChevron);
@@ -93,6 +97,8 @@ public class Board extends JFrame implements ActionListener
                bChevron2lick(i,j);
                rChevron1Click(i,j);
                rChevron2Click(i,j);
+               rSunClick(i,j);
+               bSunClick(i,j);
                return;
            }
           }
@@ -198,6 +204,54 @@ public class Board extends JFrame implements ActionListener
      
      return false;
     }   
+    public void rSunClick(int i,int j)
+    {
+        if(rsunValidMove(i,j)== false)
+        {return;}
+        tiles[r7][c3].setIcon(null);
+        tiles[i][j].setIcon(rSun);
+        r7 = i;
+        c3 = j;
+    }
+    public boolean rsunValidMove(int i,int j)
+    {
+        int row=Math.abs(r7-i);
+        int col=Math.abs(c3-j);
+        
+        if((row==0||row==1||row==-1)&&(col==0||col==1||col==-1))
+        {
+            return true;
+        }
+       /* if((col==1)&&(row==0))
+        {
+            return true;
+        }*/
+        return false;
+    }
+    public void bSunClick(int i,int j)
+    {
+        if(bsunValidMove(i,j)==false)
+        {return ;}
+        tiles[r0][c3].setIcon(null);
+        tiles[i][j].setIcon(bSun);
+        r0 = i;
+        c3 = j;
+    }
+    public boolean bsunValidMove(int i,int j)
+    {
+        int row=Math.abs(r0-i);
+        int col=Math.abs(c3-j);
+        
+        if((row==0||row==1||row==-1)&&(col==0||col==1||col==-1))
+        {
+            return true;
+        }
+        /*if((col==1)&&(row==0))
+        {
+            return true;
+        }*/
+        return false;
+    }
     public static void main(String[] args)
     {
         new Board();
