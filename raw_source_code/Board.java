@@ -15,6 +15,7 @@ public class Board extends JFrame implements ActionListener
     int r0=0,r1=1,r2=2,r3=3,r4=4,r5=5,r=6,r7=7;
     int c0=0,c1=1,c2=2,c3=3,c4=4,c5=5,c6=6;
     ImageIcon bChevron =new ImageIcon("Pieces/bchevron.png");
+    ImageIcon rChevron =new ImageIcon("Pieces/rchevron.png");
     /**
      * Constructor for objects of class Board
      * Create a tiles with JButton 
@@ -50,8 +51,8 @@ public class Board extends JFrame implements ActionListener
     }
         tiles[7][2].setIcon(bChevron);
         tiles[7][4].setIcon(bChevron);
-        tiles[0][2].setIcon(bChevron);
-        tiles[0][4].setIcon(bChevron);
+        tiles[0][2].setIcon(rChevron);
+        tiles[0][4].setIcon(rChevron);
         add(optionBar,BorderLayout.NORTH);
         add(gameBoard, BorderLayout.CENTER);
         setVisible(true);
@@ -152,7 +153,7 @@ public class Board extends JFrame implements ActionListener
     if(rc1ValidMove(i,j)== false)
     {return;}
     tiles[r0][c2].setIcon(null);
-    tiles[i][j].setIcon(bChevron);
+    tiles[i][j].setIcon(rChevron);
     r0 =i;
     c2 =j;
     }
@@ -177,7 +178,7 @@ public class Board extends JFrame implements ActionListener
     if(rc2ValidMove(i,j)== false)
     {return;}
     tiles[r0][c4].setIcon(null);
-    tiles[i][j].setIcon(bChevron);
+    tiles[i][j].setIcon(rChevron);
     r0 =i;
     c4 =j;
     }
