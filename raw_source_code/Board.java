@@ -16,8 +16,14 @@ public class Board extends JFrame implements ActionListener
     int c0=0,c1=1,c2=2,c3=3,c4=4,c5=5,c6=6;
     ImageIcon bChevron =new ImageIcon("Pieces/bchevron.png");
     ImageIcon rChevron =new ImageIcon("Pieces/rchevron.png");
+    ImageIcon bArrows =new ImageIcon("Pieces/bArrow.png");
+    ImageIcon rArrows =new ImageIcon("Pieces/rArrow.png");
     ImageIcon rSun =new ImageIcon("Pieces/rsun.png");
     ImageIcon bSun =new ImageIcon("Pieces/bsun.png");
+    ImageIcon rplus =new ImageIcon("Pieces/rplus.png");
+    ImageIcon bplus =new ImageIcon("Pieces/bplus.png");
+    ImageIcon btriangle =new ImageIcon("Pieces/btriangle.png");
+    ImageIcon rtriangle =new ImageIcon("Pieces/rtriangle.png");
     /**
      * Constructor for objects of class Board
      * Create a tiles with JButton 
