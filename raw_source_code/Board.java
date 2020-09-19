@@ -37,26 +37,10 @@ public class Board extends JFrame implements ActionListener
          * cr
          */
         // add JButton to each grid in gameBoard
-        for(int i=0; i<HEIGHT; i++){
-            for(int j=0; j<WIDTH; j++){
-            //TODO JButton can be changed to ChessPiece class or tiles class
-            //TODO each pieces must associated with coordinate 
-            //TODO addActionListener needs be change to chesspiecelistener or something similar
-            tiles[i][j] = new JButton(""+i+j); //e.g tiles[i] = new tiles
-            tiles[i][j].setBackground(Color.WHITE);
-            tiles[i][j].setName(Integer.toString(j));
-            gameBoard.add(tiles[i][j]);
-            tiles[i][j].addActionListener(this);
-            
-        }
+       
+        setBoard();
+    
         
-    }
-        tiles[0][3].setIcon(rSun);
-        tiles[7][3].setIcon(bSun);
-        tiles[7][2].setIcon(bChevron);
-        tiles[7][4].setIcon(bChevron);
-        tiles[0][2].setIcon(rChevron);
-        tiles[0][4].setIcon(rChevron);
         add(optionBar,BorderLayout.NORTH);
         add(gameBoard, BorderLayout.CENTER);
         setVisible(true);
@@ -71,6 +55,50 @@ public class Board extends JFrame implements ActionListener
     3) flip board
     4) which player move
 */
+    public void setBoard()
+    {
+    for(int i=0; i<HEIGHT; i++){
+            for(int j=0; j<WIDTH; j++){
+            //TODO JButton can be changed to ChessPiece class or tiles class
+            //TODO each pieces must associated with coordinate 
+            //TODO addActionListener needs be change to chesspiecelistener or something similar
+            tiles[i][j] = new JButton(""+i+j); //e.g tiles[i] = new tiles
+            tiles[i][j].setBackground(Color.WHITE);
+            tiles[i][j].setName(Integer.toString(j));
+            gameBoard.add(tiles[i][j]);
+            tiles[i][j].addActionListener(this);
+            
+        }
+        
+    }
+        tiles[0][0].setIcon(rplus);
+        tiles[0][1].setIcon(rtriangle);
+        tiles[0][2].setIcon(rChevron);
+        tiles[0][3].setIcon(rSun);
+        tiles[0][4].setIcon(rChevron);
+        tiles[0][5].setIcon(rtriangle);
+        tiles[0][6].setIcon(rplus);
+        tiles[1][0].setIcon(rArrows);
+        tiles[1][2].setIcon(rArrows);
+        tiles[1][4].setIcon(rArrows);
+        tiles[1][6].setIcon(rArrows);
+        tiles[6][0].setIcon(bArrows);
+        tiles[6][2].setIcon(bArrows);
+        tiles[6][4].setIcon(bArrows);
+        tiles[6][6].setIcon(bArrows);
+        tiles[7][0].setIcon(bplus);
+        tiles[7][1].setIcon(btriangle);
+        tiles[7][2].setIcon(bChevron);
+        tiles[7][3].setIcon(bSun);
+        tiles[7][4].setIcon(bChevron);
+        tiles[7][5].setIcon(btriangle);
+        tiles[7][6].setIcon(bplus);
+        
+        
+        
+        
+        
+    }
     public void flipBoard()
     {
 
