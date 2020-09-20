@@ -104,7 +104,7 @@ public class Board extends JFrame implements ActionListener
     	char color = p.getColor().toString().charAt(0);
     	String type = p.getName();
     	String orientation=p.getOrientation();
-    	ImageIcon iconName = new ImageIcon("src/"+color+type+orientation+".png");
+    	ImageIcon iconName = new ImageIcon(color+type+orientation+".png");
     	int index = pieceIndex(p.getLocation().x,p.getLocation().y);
     	//TODO set tile disable if not current player
     	if(color == 'r') {
