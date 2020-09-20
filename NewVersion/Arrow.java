@@ -23,12 +23,12 @@ public class Arrow extends ChessPiece {
 		// TODO Auto-generated method stub
 		availableMoves.clear();
 		if(this.color == blue){
-			availableMoves.add(new Point(x, y+1));
-       			availableMoves.add(new Point(x, y+2));
+			availableMoves.add(new Point(xCoord, yCoord+1));
+       			availableMoves.add(new Point(xCoord, yCoord+2));
 		}
 		if(this.color == red){
-			availableMoves.add(new Point(x, y-1));
-       			availableMoves.add(new Point(x, y-2));
+			availableMoves.add(new Point(xCoord, yCoord-1));
+       			availableMoves.add(new Point(xCoord, yCoord-2));
 		}
 	}
 
