@@ -67,6 +67,9 @@ public class Board extends JFrame implements ActionListener
     public JButton getTile(int index) {
 		return tiles[index];
 	}
+    public JButton[] getTiles() {
+		return tiles;
+	}
 	public void setTiles(JButton tiles , int index) {
 		this.tiles[index] = tiles;
 	}
@@ -128,7 +131,17 @@ public class Board extends JFrame implements ActionListener
 	{
 	}
 	
-	public void resetTile() {};
+	public void resetTileBackground()
+	{
+		for(JButton t : tiles) 
+		{
+			t.setBackground(Color.WHITE);
+		}
+	}
+	public void resetTileIcon(int x, int y)
+	{
+		this.tiles[pieceIndex(x, y)].setIcon(null);
+	}
 	
                    
 }
