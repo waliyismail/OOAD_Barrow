@@ -15,9 +15,8 @@ public abstract class ChessPiece
     String pieceColor;
     Point pieceLocation;
     ArrayList<Point> availableMoves;
-    ImageIcon icon;
     
-	String orientation; // only for arrow
+	String orientation = "" ;
 
     public ChessPiece(String name, String color, int xCoord , int yCoord)
     {
@@ -27,7 +26,6 @@ public abstract class ChessPiece
         pieceLocation.x = xCoord;
         pieceLocation.y = yCoord;
         availableMoves = new ArrayList<>();
-        icon = new ImageIcon(color.charAt(0)+name+".png");
         
     }
     
@@ -39,7 +37,6 @@ public abstract class ChessPiece
         pieceLocation.y = yCoord;
         availableMoves = new ArrayList<>();
         this.orientation = orientation;
-        icon = new ImageIcon(color.charAt(0)+name+orientation+".png");
     }
 
 	/**
