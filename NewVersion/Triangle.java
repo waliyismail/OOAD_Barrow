@@ -10,12 +10,32 @@ public class Triangle extends ChessPiece{
 
 	public Triangle(String name, String color, int xCoord, int yCoord) {
 		super(name, color, xCoord, yCoord);
-		// TODO Auto-generated constructor stub
+		this.x=xCoord;
+		this.y=yCoord;
+		generateMoves() ;
+		getAvailableMoves();
 	}
 
 	@Override
 	public void generateMoves() {
-		// TODO Auto-generated method stub
+		
+	availableMoves.clear();
+	availableMoves.add(new Point(x+1, y+1));
+        availableMoves.add(new Point(x+2, y+2));
+        availableMoves.add(new Point(x-1, y-1));
+        availableMoves.add(new Point(x-2, y-2));
+        availableMoves.add(new Point(x+1, y-1));
+        availableMoves.add(new Point(x+2, y-2));
+        availableMoves.add(new Point(x-1, y+1));
+        availableMoves.add(new Point(x-2, y+2));
+		
+		// Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
+        Iterator<Point> iter = availableMoves.iterator();
+
+        while(iter.hasNext()){
+            Point move = iter.next();
+            if(move.x > 7 || move.x < 0 || move.y > 8 || move.y < 0){
+                iter.remove();
 		
 	}
 
