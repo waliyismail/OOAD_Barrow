@@ -8,8 +8,10 @@ import java.util.ArrayList;
  */
 public class Triangle extends ChessPiece{
 int x,y;
-	public Triangle(String name, String color, int xCoord, int yCoord) {
+	public Triangle(String name, String color, int xCoord , int yCoord, String orientation)
+	{
 		super(name, color, xCoord, yCoord);
+		this.orientation = orientation;
 		this.x=xCoord;
 		this.y=yCoord;
 		generateMoves() ;
