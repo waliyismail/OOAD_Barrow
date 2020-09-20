@@ -15,7 +15,9 @@ import javax.swing.JButton;
  *
  */
 public class Game {
-
+	
+	private static final int PIECE = 1;
+	private static final int LOCATION = 2;
 	private Board gameBoard;
 	private Sun redSun;
 	private Chevron redChevron1;
@@ -40,6 +42,8 @@ public class Game {
 	private Arrow blueArrow3;
 	private Arrow blueArrow4;
 	private ArrayList<ChessPiece> chessPieces;
+	int moveflag = 1; // each player needs to click 2 times, one choose pieces to move, another one is the location to move
+
 	public Game() {
 		
 		chessPieces = new ArrayList<>();
@@ -128,25 +132,45 @@ public class Game {
 		// forall chesspiece, get the index of tile .
 		// get the available move for each chesspieces
 		// add each a listener for to highlight the board (cyan)
-
 		for(ChessPiece p : chessPieces) 
 		{
-			JButton temp = gameBoard.getTile(gameBoard.pieceIndex(p.getLocation().x, p.getLocation().y));
-			System.out.println(temp.getName());
-			temp.addActionListener(new ActionListener(){
+			JButton pieceTile = gameBoard.getTile(gameBoard.pieceIndex(p.getLocation().x, p.getLocation().y));
+			System.out.println(pieceTile.getName());
+			pieceTile.addActionListener(new ActionListener(){
 
+				int moveFlag = PIECE; 					
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Iterator<Point> iter = p.getAvailableMoves().iterator();
+					
+					// each player needs to click 2 times, one choose pieces to move, another one is the location to move
+					// 1 -> choose piece
+					// -1 -> choose location
+//					int i = gameBoard.pieceIndex(p.getLocation().x, p.getLocation().y);
+//					JButton b = gameBoard.getTile(32);
+//					JButton[] t = gameBoard.getTiles();
+					gameBoard.resetTileBackground();
+					if (moveFlag == LOCATION) {
+						// move to the location and remove the highlight
+						System.out.println("masuk sini");
+						pieceMove(p, new Point(5,3));
+						
+						moveFlag = PIECE;
+						
+					}else if(moveFlag == PIECE) 
+					{
+						Iterator<Point> iter = p.getAvailableMoves().iterator();
+						
+						while(iter.hasNext()){
+							Point tile = iter.next();
+							
+							gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y)).setBackground(Color.cyan);
 
-			        while(iter.hasNext()){
-			            Point tile = iter.next();
-			            gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y)).setBackground(Color.cyan);
-//			            if(gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y)).getBackground().equals(Color.cyan) ) 
-//			            {
-//			            	gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y)).setBackground(Color.white);
-//			            }
-			        }
+							moveFlag = LOCATION;
+							// get the next location
+						}
+					}
+					//getNextLocation();
+					//pieceTile.setEnabled(false);
 					
 				}
 	            });
@@ -155,6 +179,14 @@ public class Game {
 		
 	}
 	
+	public void pieceMove(ChessPiece p, Point nextLocation) 
+	{
+		gameBoard.resetTileIcon(p.getLocation().x, p.getLocation().y);
+		p.setLocation(nextLocation.x, nextLocation.y);
+		gameBoard.pieceSetup(p);
+	}
+	
+
 	public static void main(String[] args)
 	{
 		new Game();
