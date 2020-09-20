@@ -12,8 +12,10 @@ import java.util.Iterator;
  */
 public class Chevron extends ChessPiece{
         int x ,y;
-	public Chevron(String name, String color, int xCoord, int yCoord) {
+	public Chevron(String name, String color, int xCoord , int yCoord, String orientation)
+	{
 		super(name, color, xCoord, yCoord);
+		this.orientation = orientation;
 		// TODO Auto-generated constructor stub
 		
 		this.x=xCoord;
