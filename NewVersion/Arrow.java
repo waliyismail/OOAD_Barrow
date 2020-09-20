@@ -21,7 +21,9 @@ public class Arrow extends ChessPiece {
 	@Override
 	public void generateMoves() {
 		// TODO Auto-generated method stub
-		
+		availableMoves.clear();
+		availableMoves.add(new Point(x, y+1));
+       		availableMoves.add(new Point(x, y+2));
 	}
 
 	@Override
