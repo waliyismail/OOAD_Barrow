@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  */
 public class Triangle extends ChessPiece{
-
+int x,y;
 	public Triangle(String name, String color, int xCoord, int yCoord) {
 		super(name, color, xCoord, yCoord);
 		this.x=xCoord;
