@@ -96,7 +96,7 @@ public class Board extends JFrame implements ActionListener
      */
     public int pieceIndex(int x, int y) 
     {
-    	return x + y*WIDTH;
+    	return x*WIDTH+ y;
     }
     
     /**
@@ -111,6 +111,16 @@ public class Board extends JFrame implements ActionListener
     	tiles[pieceIndex(p.getLocation().x,p.getLocation().y)].setIcon(iconName);
     	//System.out.println(iconName.toString());
     	
+    }
+     public void pieceSetupArrows(ChessPiece p) 
+    {
+        char color = p.getColor().toString().charAt(0);
+        String type = p.getName();
+        String orientation=p.getOrientation();
+        ImageIcon iconName = new ImageIcon(color+type+orientation+ ".png");
+        tiles[pieceIndex(p.getLocation().x,p.getLocation().y)].setIcon(iconName);
+        //System.out.println(iconName.toString());
+        
     }
     public ImageIcon setImage(ChessPiece p) 
     {
