@@ -23,10 +23,10 @@ public class Game {
 		Triangle redTriangle2 = new Triangle("triangle", "red", 0, 5);
 		Plus redPlus1 = new Plus("plus", "red", 0, 0);
 		Plus redPlus2 = new Plus("plus", "red", 0, 6);
-		Arrow redArrow1 = new Arrow("Arrow","red", 6, 0, "down");
-		Arrow redArrow2 = new Arrow("Arrow","red", 6, 2,"down");
-		Arrow redArrow3 = new Arrow("Arrow","red", 6, 4,"down");
-		Arrow redArrow4 = new Arrow("Arrow","red", 6, 6, "down");
+		Arrow redArrow1 = new Arrow("Arrow","red", 1, 0, "down");
+		Arrow redArrow2 = new Arrow("Arrow","red", 1, 2,"down");
+		Arrow redArrow3 = new Arrow("Arrow","red", 1, 4,"down");
+		Arrow redArrow4 = new Arrow("Arrow","red", 1, 6, "down");
 		gameBoard.pieceSetup(redSun);
 		gameBoard.pieceSetup(redChevron1);
 		gameBoard.pieceSetup(redChevron2);
