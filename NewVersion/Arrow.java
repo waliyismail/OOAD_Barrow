@@ -22,8 +22,14 @@ public class Arrow extends ChessPiece {
 	public void generateMoves() {
 		// TODO Auto-generated method stub
 		availableMoves.clear();
-		availableMoves.add(new Point(x, y+1));
-       		availableMoves.add(new Point(x, y+2));
+		if(this.color == blue){
+			availableMoves.add(new Point(x, y+1));
+       			availableMoves.add(new Point(x, y+2));
+		}
+		if(this.color == red){
+			availableMoves.add(new Point(x, y-1));
+       			availableMoves.add(new Point(x, y-2));
+		}
 	}
 
 	@Override
