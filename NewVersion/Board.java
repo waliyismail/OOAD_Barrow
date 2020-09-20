@@ -12,26 +12,16 @@ import java.awt.event.*;
 import java.util.ArrayList;
 public class Board extends JFrame implements ActionListener
 {
-//	//Image imports
-//	ImageIcon bChevron =new ImageIcon("bchevron.png");
-//    ImageIcon rChevron =new ImageIcon("rchevron.png");
-//    ImageIcon rSun =new ImageIcon("rsun.png");
-//    ImageIcon bSun =new ImageIcon("bsun.png");
-//    ImageIcon bArrow =new ImageIcon("bArrow.png");
-//    ImageIcon rArrow =new ImageIcon("rArrow.png");
-//    ImageIcon bPlus =new ImageIcon("rplus.png");
-//    ImageIcon rPlus =new ImageIcon("bplus.png");
-//    ImageIcon bTriangle =new ImageIcon("btriangle.png");
-//    ImageIcon rTriangle =new ImageIcon("rtriangle.png");
     
     private static final int WIDTH = 7;
     private static final int HEIGHT = 8;
     private int totalTiles = WIDTH*HEIGHT;
-    JButton[] tiles = new JButton[totalTiles];
+    private JButton[] tiles = new JButton[totalTiles];
     private JPanel optionBar = new JPanel(new FlowLayout());
     private JPanel gameBoard = new JPanel(new GridLayout(HEIGHT,WIDTH));
     private JButton saveButton = new JButton("Save");
     private JButton loadButton = new JButton("Load");
+    
 
     /**
      * Constructor for objects of class Board
@@ -50,7 +40,6 @@ public class Board extends JFrame implements ActionListener
         initBoard();        
         add(optionBar,BorderLayout.NORTH);
         add(gameBoard, BorderLayout.CENTER);
-        //set tile number
         setVisible(true);
         setResizable(true);
         setLocationRelativeTo(null);
@@ -74,7 +63,14 @@ public class Board extends JFrame implements ActionListener
         // newtilenumber = newx + newy*WIDTH
     }
     
-    public void initBoard() {
+    
+    public JButton getTile(int index) {
+		return tiles[index];
+	}
+	public void setTiles(JButton tiles , int index) {
+		this.tiles[index] = tiles;
+	}
+	public void initBoard() {
     	// add JButton to each grid in gameBoard
         for(int i=0; i<totalTiles; i++){
             //TODO JButton can be changed to ChessPiece class or tiles class
@@ -107,38 +103,32 @@ public class Board extends JFrame implements ActionListener
     {
     	char color = p.getColor().toString().charAt(0);
     	String type = p.getName();
-    	ImageIcon iconName = new ImageIcon(color+type+ ".png");
-    	tiles[pieceIndex(p.getLocation().x,p.getLocation().y)].setIcon(iconName);
+    	String orientation=p.getOrientation();
+    	ImageIcon iconName = new ImageIcon("src/"+color+type+orientation+".png");
+    	int index = pieceIndex(p.getLocation().x,p.getLocation().y);
+    	//TODO set tile disable if not current player
+    	if(color == 'r') {
+    		
+    		tiles[index].setEnabled(false);;
+    	}
+		tiles[index].setIcon(iconName);
+		tiles[index].setDisabledIcon(iconName);
+    	
     	//System.out.println(iconName.toString());
     	
     }
-     public void pieceSetupArrows(ChessPiece p) 
-    {
-        char color = p.getColor().toString().charAt(0);
-        String type = p.getName();
-        String orientation=p.getOrientation();
-        ImageIcon iconName = new ImageIcon(color+type+orientation+ ".png");
-        tiles[pieceIndex(p.getLocation().x,p.getLocation().y)].setIcon(iconName);
-        //System.out.println(iconName.toString());
-        
-    }
-    public ImageIcon setImage(ChessPiece p) 
-    {
-    	setVisible(false);
-    	char color = p.getColor().toString().charAt(0);
-    	String type = p.getName();
-    	ImageIcon iconName = new ImageIcon(color+type+ ".png");
-    	return iconName;
-    	
-    }
+
     public void actionPerformed(ActionEvent e)
     {
         JButton temp = (JButton)e.getSource();
         System.out.println("button " + temp.getName() + " clicked!");
     }
-	public void setPieces(ArrayList<ChessPiece> pieces) {
-		
+    
+	public void setPieces(ArrayList<ChessPiece> pieces) 
+	{
 	}
-
+	
+	public void resetTile() {};
+	
                    
 }
