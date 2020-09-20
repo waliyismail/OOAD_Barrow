@@ -1,6 +1,12 @@
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  * initiate all the state of the game
@@ -10,23 +16,60 @@ import javax.swing.ImageIcon;
  */
 public class Game {
 
+	private Board gameBoard;
+	private Sun redSun;
+	private Chevron redChevron1;
+	private Chevron redChevron2;
+	private Triangle redTriangle1;
+	private Triangle redTriangle2;
+	private Plus redPlus1;
+	private Plus redPlus2;
+	private Arrow redArrow1;
+	private Arrow redArrow2;
+	private Arrow redArrow3;
+	private Arrow redArrow4;
+	private Sun blueSun;
+	private Chevron blueChevron1;
+	private Chevron blueChevron2;
+	private Triangle blueTriangle1;
+	private Triangle blueTriangle2;
+	private Plus bluePlus1;
+	private Plus bluePlus2;
+	private Arrow blueArrow1;
+	private Arrow blueArrow2;
+	private Arrow blueArrow3;
+	private Arrow blueArrow4;
+	private ArrayList<ChessPiece> chessPieces;
 	public Game() {
 		
-		ArrayList<ChessPiece> pieces = new ArrayList<>();
-		Board gameBoard = new Board();
+		chessPieces = new ArrayList<>();
+		gameBoard = new Board();
 	
 		//red pieces
-		ChessPiece redSun = new Sun("sun", "red", 0, 3);
-		Chevron redChevron1 = new Chevron("chevron", "red", 0, 2);
-		Chevron redChevron2 = new Chevron("chevron", "red", 0, 4);
-		Triangle redTriangle1 = new Triangle("triangle", "red", 0, 1);
-		Triangle redTriangle2 = new Triangle("triangle", "red", 0, 5);
-		Plus redPlus1 = new Plus("plus", "red", 0, 0);
-		Plus redPlus2 = new Plus("plus", "red", 0, 6);
-		Arrow redArrow1 = new Arrow("Arrow","red", 1, 0, "down");
-		Arrow redArrow2 = new Arrow("Arrow","red", 1, 2,"down");
-		Arrow redArrow3 = new Arrow("Arrow","red", 1, 4,"down");
-		Arrow redArrow4 = new Arrow("Arrow","red", 1, 6, "down");
+		redSun = new Sun("sun", "red", 0, 3);
+		redChevron1 = new Chevron("chevron", "red", 0, 2, "down");
+		redChevron2 = new Chevron("chevron", "red", 0, 4, "down");
+		redTriangle1 = new Triangle("triangle", "red", 0, 1, "down");
+		redTriangle2 = new Triangle("triangle", "red", 0, 5, "down");
+		redPlus1 = new Plus("plus", "red", 0, 0);
+		redPlus2 = new Plus("plus", "red", 0, 6);
+		redArrow1 = new Arrow("Arrow","red", 1, 0, "down");
+		redArrow2 = new Arrow("Arrow","red", 1, 2,"down");
+		redArrow3 = new Arrow("Arrow","red", 1, 4,"down");
+		redArrow4 = new Arrow("Arrow","red", 1, 6, "down");
+		
+		chessPieces.add(redSun);
+		chessPieces.add(redChevron1);
+		chessPieces.add(redChevron2);
+		chessPieces.add(redTriangle1);
+		chessPieces.add(redTriangle2);
+		chessPieces.add(redPlus1);
+		chessPieces.add(redPlus2);
+		chessPieces.add(redArrow1);
+		chessPieces.add(redArrow2);
+		chessPieces.add(redArrow3);
+		chessPieces.add(redArrow3);
+
 		gameBoard.pieceSetup(redSun);
 		gameBoard.pieceSetup(redChevron1);
 		gameBoard.pieceSetup(redChevron2);
@@ -34,23 +77,36 @@ public class Game {
 		gameBoard.pieceSetup(redTriangle2);
 		gameBoard.pieceSetup(redPlus1);
 		gameBoard.pieceSetup(redPlus2);
-		gameBoard.pieceSetupArrows(redArrow1);
-		gameBoard.pieceSetupArrows(redArrow2);
-		gameBoard.pieceSetupArrows(redArrow3);
-		gameBoard.pieceSetupArrows(redArrow4);
+		gameBoard.pieceSetup(redArrow1);
+		gameBoard.pieceSetup(redArrow2);
+		gameBoard.pieceSetup(redArrow3);
+		gameBoard.pieceSetup(redArrow4);
 		
 		//blue pieces
-		Sun blueSun = new Sun("sun", "blue", 7, 3);
-		Chevron blueChevron1 = new Chevron("chevron", "blue", 7, 2);
-		Chevron blueChevron2 = new Chevron("chevron", "blue", 7, 4);
-		Triangle blueTriangle1 = new Triangle("triangle", "blue", 7, 1);
-		Triangle blueTriangle2 = new Triangle("triangle", "blue", 7, 5);
-		Plus bluePlus1 = new Plus("plus", "blue", 7, 0);
-		Plus bluePlus2 = new Plus("plus", "blue", 7, 6);
-		Arrow blueArrow1 = new Arrow("Arrow","blue", 6, 0, "up");
-		Arrow blueArrow2 = new Arrow("Arrow","blue", 6, 2, "up");
-		Arrow blueArrow3 = new Arrow("Arrow","blue", 6, 4, "up");
-		Arrow blueArrow4 = new Arrow("Arrow","blue", 6, 6, "up");
+		blueSun = new Sun("sun", "blue", 7, 3);
+		blueChevron1 = new Chevron("chevron", "blue", 7, 2 ,"up");
+		blueChevron2 = new Chevron("chevron", "blue", 7, 4, "up");
+		blueTriangle1 = new Triangle("triangle", "blue", 7, 1, "up");
+		blueTriangle2 = new Triangle("triangle", "blue", 7, 5, "up");
+		bluePlus1 = new Plus("plus", "blue", 7, 0);
+		bluePlus2 = new Plus("plus", "blue", 7, 6);
+		blueArrow1 = new Arrow("Arrow","blue", 6, 0, "up");
+		blueArrow2 = new Arrow("Arrow","blue", 6, 2, "up");
+		blueArrow3 = new Arrow("Arrow","blue", 6, 4, "up");
+		blueArrow4 = new Arrow("Arrow","blue", 6, 6, "up");
+		
+		chessPieces.add(blueSun);
+		chessPieces.add(blueChevron1);
+		chessPieces.add(blueChevron2);
+		chessPieces.add(blueTriangle1);
+		chessPieces.add(blueTriangle2);
+		chessPieces.add(bluePlus1);
+		chessPieces.add(bluePlus2);
+		chessPieces.add(blueArrow1);
+		chessPieces.add(blueArrow2);
+		chessPieces.add(blueArrow3);
+		chessPieces.add(blueArrow3);
+		
 		gameBoard.pieceSetup(blueSun);
 		gameBoard.pieceSetup(blueChevron1);
 		gameBoard.pieceSetup(blueChevron2);
@@ -58,14 +114,47 @@ public class Game {
 		gameBoard.pieceSetup(blueTriangle2);
 		gameBoard.pieceSetup(bluePlus1);
 		gameBoard.pieceSetup(bluePlus2);
-		gameBoard.pieceSetupArrows(blueArrow1);
-		gameBoard.pieceSetupArrows(blueArrow2);
-		gameBoard.pieceSetupArrows(blueArrow3);
-		gameBoard.pieceSetupArrows(blueArrow4);
-		pieces.add(redSun);
-		gameBoard.setPieces(pieces);
+		gameBoard.pieceSetup(blueArrow1);
+		gameBoard.pieceSetup(blueArrow2);
+		gameBoard.pieceSetup(blueArrow3);
+		gameBoard.pieceSetup(blueArrow4);
+		//gameBoard.setPieces(pieces);
+		highlightAvailableMovement();
 
 	}
+	
+	public void checkWinner() {};
+	public void highlightAvailableMovement() {
+		// forall chesspiece, get the index of tile .
+		// get the available move for each chesspieces
+		// add each a listener for to highlight the board (cyan)
+
+		for(ChessPiece p : chessPieces) 
+		{
+			JButton temp = gameBoard.getTile(gameBoard.pieceIndex(p.getLocation().x, p.getLocation().y));
+			System.out.println(temp.getName());
+			temp.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Iterator<Point> iter = p.getAvailableMoves().iterator();
+
+			        while(iter.hasNext()){
+			            Point tile = iter.next();
+			            gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y)).setBackground(Color.cyan);
+//			            if(gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y)).getBackground().equals(Color.cyan) ) 
+//			            {
+//			            	gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y)).setBackground(Color.white);
+//			            }
+			        }
+					
+				}
+	            });
+		}
+		
+		
+	}
+	
 	public static void main(String[] args)
 	{
 		new Game();
