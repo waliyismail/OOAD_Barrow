@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  */
 public class Arrow extends ChessPiece {
-
+	private static int turn = 1;
 
 	
 	public Arrow(String name, String color, int xCoord, int yCoord, String orientation) {
@@ -22,13 +22,24 @@ public class Arrow extends ChessPiece {
 	public void generateMoves() {
 		// TODO Auto-generated method stub
 		availableMoves.clear();
-		if(this.color == blue){
+		if( (turn == 1 && this.color == blue) ){
 			availableMoves.add(new Point(xCoord, yCoord+1));
        			availableMoves.add(new Point(xCoord, yCoord+2));
 		}
-		if(this.color == red){
+		
+		if( (turn == 1 && this.color == red) ){
 			availableMoves.add(new Point(xCoord, yCoord-1));
        			availableMoves.add(new Point(xCoord, yCoord-2));
+		}
+		
+		if( (turn == 2 && this.color == blue) ){
+			availableMoves.add(new Point(xCoord, yCoord-1));
+       			availableMoves.add(new Point(xCoord, yCoord-2));
+		}
+		
+		if( (turn == 2 && this.color == red) ){
+			availableMoves.add(new Point(xCoord, yCoord+1));
+       			availableMoves.add(new Point(xCoord, yCoord+2));
 		}
 	}
 
@@ -38,6 +49,13 @@ public class Arrow extends ChessPiece {
 		return null;
 	}
 	
-
-
+	//to be called when flipping the board
+	public void changeArrowMovement(){
+		if(Arrow.turn == 1){
+			Arrow.turn = 2;
+		}
+		else{
+			Arrow.turn = 1;
+		}
+	}
 }
