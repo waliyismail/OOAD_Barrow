@@ -11,11 +11,13 @@ import javax.swing.JButton;
 /**
  * initiate all the state of the game
  * not finished
+ * singleton
  * @author waliyismail
  *
  */
 public class Game {
 	
+	private static Game single_instance = null; // ensure game is only instantiate one
 	private Board gameBoard;
 	private Sun redSun;
 	private Chevron redChevron1;
@@ -124,6 +126,13 @@ public class Game {
 
 	}
 	
+	public static Game getInstance() 
+	{
+		if (single_instance == null) 
+            single_instance = new Game(); 
+  
+        return single_instance;
+	}
 	public void checkWinner() {};
 	/**
 	 * waliy
@@ -138,6 +147,7 @@ public class Game {
 		{
 			JButton pieceTile = gameBoard.getTile(gameBoard.pieceIndex(p.getLocation().x, p.getLocation().y));
 			System.out.println(pieceTile.getName());
+			
 			pieceTile.addActionListener(new ActionListener(){
 				
 				@Override
@@ -145,7 +155,7 @@ public class Game {
 					
 					gameBoard.resetTileBackground();
 					Iterator<Point> iter = p.getAvailableMoves().iterator();
-					
+					System.out.print(p.getAvailableMoves());
 					while(iter.hasNext()){
 						Point tile = iter.next();
 						JButton t = gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y));
@@ -153,32 +163,49 @@ public class Game {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
+								gameBoard.resetTileBackground();
 								pieceMove(p,new Point(tile.x,tile.y));
-								
+								t.removeActionListener(this);
 							}
 							
 						});
 						t.setBackground(Color.cyan);
 					}
+					pieceTile.removeActionListener(this);
 				}
+				
 			});
+			
 		}
 		
 		
 	}
-	public void movetoemptyTile() {};
-	
+
+	/**
+	 * move current pieces to new location
+	 * @param p Piece
+	 * @param nextLocation Coordinate to be moved
+	 */
 	public void pieceMove(ChessPiece p, Point nextLocation) 
 	{
 		gameBoard.resetTileIcon(p.getLocation().x, p.getLocation().y);
 		p.setLocation(nextLocation.x, nextLocation.y);
+		p.generateMoves();
 		gameBoard.pieceSetup(p);
 	}
 	
+	
+	public Board getGameBoard() {
+		return gameBoard;
+	}
+
+	public void setGameBoard(Board gameBoard) {
+		this.gameBoard = gameBoard;
+	}
 
 	public static void main(String[] args)
 	{
-		new Game();
+		Game.getInstance();
 	}  
 	
 }
