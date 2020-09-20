@@ -145,9 +145,7 @@ public class Game {
 					// each player needs to click 2 times, one choose pieces to move, another one is the location to move
 					// 1 -> choose piece
 					// -1 -> choose location
-//					int i = gameBoard.pieceIndex(p.getLocation().x, p.getLocation().y);
-//					JButton b = gameBoard.getTile(32);
-//					JButton[] t = gameBoard.getTiles();
+					
 					gameBoard.resetTileBackground();
 					if (moveFlag == LOCATION) {
 						// move to the location and remove the highlight
@@ -162,9 +160,18 @@ public class Game {
 						
 						while(iter.hasNext()){
 							Point tile = iter.next();
-							
-							gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y)).setBackground(Color.cyan);
+							JButton t = gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y));
+							t.addActionListener(new ActionListener() {
 
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									pieceMove(p,new Point(tile.x,tile.y));
+									
+								}
+								
+							});
+							t.setBackground(Color.cyan);
+							
 							moveFlag = LOCATION;
 							// get the next location
 						}
@@ -178,6 +185,7 @@ public class Game {
 		
 		
 	}
+	public void movetoemptyTile() {};
 	
 	public void pieceMove(ChessPiece p, Point nextLocation) 
 	{
