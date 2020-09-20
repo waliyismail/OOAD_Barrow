@@ -107,7 +107,7 @@ public class Board extends JFrame implements ActionListener
     	char color = p.getColor().toString().charAt(0);
     	String type = p.getName();
     	String orientation=p.getOrientation();
-    	ImageIcon iconName = new ImageIcon(color+type+orientation+".png");
+    	ImageIcon iconName = new ImageIcon("src/"+color+type+orientation+".png");
     	int index = pieceIndex(p.getLocation().x,p.getLocation().y);
     	//TODO set tile disable if not current player
     	if(color == 'r') {
@@ -138,9 +138,18 @@ public class Board extends JFrame implements ActionListener
 			t.setBackground(Color.WHITE);
 		}
 	}
+	
 	public void resetTileIcon(int x, int y)
 	{
 		this.tiles[pieceIndex(x, y)].setIcon(null);
+	}
+	
+	public boolean hasFriendlytile(ChessPiece p, int x, int y) 
+	{
+		int i = pieceIndex(x,y);
+		if(tiles[i].getIcon() == null) return false;
+		if(!tiles[i].getIcon().toString().contains(p.getColor())) return false;
+		return true;
 	}
 	
                    
