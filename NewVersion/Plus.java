@@ -24,17 +24,7 @@ public class Plus extends ChessPiece {
 	
 	
 		
-	availableMoves.add(new Point(x, y+1));
-        availableMoves.add(new Point(x, y+2));
-		
-        availableMoves.add(new Point(x, y-1));
-        availableMoves.add(new Point(x, y-2));
-		
-        availableMoves.add(new Point(x+1, y));
-        availableMoves.add(new Point(x+2, y));
-		
-        availableMoves.add(new Point(x-1, y));
-        availableMoves.add(new Point(x-2, y));
+	
 		
 	// Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
         Iterator<Point> iter = availableMoves.iterator();
