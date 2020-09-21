@@ -17,7 +17,7 @@ public class Arrow extends ChessPiece {
 	public Arrow(String name, String color, int xCoord, int yCoord, String orientation, int moveType) {
 		super(name, color, xCoord, yCoord);
 		this.orientation = orientation;
-		this.moveType = moveType
+		this.moveType = moveType;
 	}
 
 	@Override
@@ -25,13 +25,13 @@ public class Arrow extends ChessPiece {
 		// TODO Auto-generated method stub
 		availableMoves.clear();
 		if( this.moveType == 1 ){
-			availableMoves.add(new Point(xCoord, yCoord+1));
-       			availableMoves.add(new Point(xCoord, yCoord+2));
+			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y +1));
+       			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y +2));
 		}
 		
 		if( this.moveType == 2 ){
-			availableMoves.add(new Point(xCoord, yCoord-1));
-       			availableMoves.add(new Point(xCoord, yCoord-2));
+			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y -1));
+       			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y -2));
 		}
 		
 		 // Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
@@ -51,9 +51,9 @@ public class Arrow extends ChessPiece {
 		return this.availableMoves;
 	}
 	
-	//to be called when flipping the board
+	//to be called when flipping the board or when Arrow reaches last row
 	public void changeArrowMovement(){
-		if ( this.moveType == 1 ){
+		if( this.moveType == 1 ){
 			this.moveType = 2;
 		}
 		
