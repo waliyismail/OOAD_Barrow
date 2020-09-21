@@ -72,7 +72,7 @@ public class Game {
 		chessPieces.add(redArrow1);
 		chessPieces.add(redArrow2);
 		chessPieces.add(redArrow3);
-		chessPieces.add(redArrow3);
+		chessPieces.add(redArrow4);
 
 		gameBoard.pieceSetup(redSun);
 		gameBoard.pieceSetup(redChevron1);
@@ -109,7 +109,7 @@ public class Game {
 		chessPieces.add(blueArrow1);
 		chessPieces.add(blueArrow2);
 		chessPieces.add(blueArrow3);
-		chessPieces.add(blueArrow3);
+		chessPieces.add(blueArrow4);
 		
 		gameBoard.pieceSetup(blueSun);
 		gameBoard.pieceSetup(blueChevron1);
