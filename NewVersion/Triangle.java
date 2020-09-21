@@ -61,7 +61,7 @@ int x,y;
 	@Override
 	public ArrayList<Point> getAvailableMoves() {
 		// TODO Auto-generated method stub
-		return null;
+		return availableMoves;
 	}
 	
 }
