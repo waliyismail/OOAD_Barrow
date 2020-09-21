@@ -128,10 +128,10 @@ public class Game {
 	
 	public static Game getInstance() 
 	{
-		if (single_instance == null) 
-            single_instance = new Game(); 
-  
-        return single_instance;
+		if (single_instance == null){ 
+            		single_instance = new Game();
+		}
+        	return single_instance;
 	}
 	public void checkWinner() {};
 	/**
