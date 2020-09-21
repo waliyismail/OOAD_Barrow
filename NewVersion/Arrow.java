@@ -8,20 +8,21 @@ import java.util.Iterator;
  * but when it reaches the other edge of the board,
  * it turns around and heads back in the opposite direction.
  * (The icon should also turn around when that happens.)
- * @author waliyismail
+ * @author waliyismail & Liew Chin Onn
  *
  */
 public class Arrow extends ChessPiece {
 	//Used to determine the way of moving
 	private int moveType;
 
-	
+	//wrote by Liew Chin Onn. Constructor
 	public Arrow(String name, String color, int xCoord, int yCoord, String orientation, int moveType) {
 		super(name, color, xCoord, yCoord);
 		this.orientation = orientation;
 		this.moveType = moveType;
 	}
-
+	
+	//wrote by Liew Chin Onn. Determine possible moves
 	@Override
 	public void generateMoves() {
 		// TODO Auto-generated method stub
@@ -36,7 +37,7 @@ public class Arrow extends ChessPiece {
        			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y -2));
 		}
 		
-		 // Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
+		 // Iterate through all illegal possible moves (eg. a move that is outside the grid) and eliminate them	
 		Iterator<Point> iter = availableMoves.iterator();
 		
 		while(iter.hasNext()){
@@ -48,13 +49,14 @@ public class Arrow extends ChessPiece {
 		}
         }	
 
+	//wrote by Liew Chin Onn
 	@Override
 	public ArrayList<Point> getAvailableMoves() {
 		// TODO Auto-generated method stub
 		return this.availableMoves;
 	}
 	
-	//to be called when flipping the board
+	////wrote by Liew Chin Onn. A method to be called when flipping the board to change the movement of arrow pieces
 	public void changeArrowMovement(){
 		if ( this.moveType == 1 ){
 			this.moveType = 2;
@@ -65,7 +67,7 @@ public class Arrow extends ChessPiece {
 		}
 	}
 	
-	//check location to see whether the Arrow piece is in the last roll, if so flip it
+	////wrote by Liew Chin Onn. check piece's location to see whether the Arrow piece is in the last roll, if so flip it
 	public void checkLocation(){
 		if ( this.getLocation().y == 8 ){
 			this.changeArrowMovement();
