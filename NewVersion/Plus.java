@@ -22,7 +22,36 @@ public class Plus extends ChessPiece {
 	public void generateMoves() {
 		availableMoves.clear();
 	
-	
+	availableMoves.add(new Point(x, y+1));
+        availableMoves.add(new Point(x, y+2));
+        availableMoves.add(new Point(x, y+3));
+        availableMoves.add(new Point(x, y+4));
+        availableMoves.add(new Point(x, y+5));
+        availableMoves.add(new Point(x, y+6));
+        
+        availableMoves.add(new Point(x, y-1));
+        availableMoves.add(new Point(x, y-2));
+        availableMoves.add(new Point(x, y-3));
+        availableMoves.add(new Point(x, y-4));
+        availableMoves.add(new Point(x, y-5));
+        availableMoves.add(new Point(x, y-6));
+        
+        availableMoves.add(new Point(x+1, y));
+        availableMoves.add(new Point(x+2, y));
+        availableMoves.add(new Point(x+3, y));
+        availableMoves.add(new Point(x+4, y));
+        availableMoves.add(new Point(x+5, y));
+        availableMoves.add(new Point(x+6, y));
+        availableMoves.add(new Point(x+7, y));
+        
+        availableMoves.add(new Point(x-1, y));
+        availableMoves.add(new Point(x-2, y));
+        availableMoves.add(new Point(x-3, y));
+        availableMoves.add(new Point(x-4, y));
+        availableMoves.add(new Point(x-5, y));
+        availableMoves.add(new Point(x-6, y));
+        availableMoves.add(new Point(x-7, y));
+        
 		
 	
 		
@@ -31,7 +60,7 @@ public class Plus extends ChessPiece {
 
         while(iter.hasNext()){
             Point move = iter.next();
-            if(move.x > 7 || move.x < 0 || move.y > 8 || move.y < 0){
+            if(move.x > 7 || move.x < 0 || move.y > 6|| move.y < 0){
                 iter.remove();
 		
 	}
