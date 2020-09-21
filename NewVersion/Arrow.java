@@ -25,13 +25,13 @@ public class Arrow extends ChessPiece {
 		// TODO Auto-generated method stub
 		availableMoves.clear();
 		if( this.moveType == 1 ){
-			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y +1));
-       			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y +2));
+			availableMoves.add(new Point(this.pieceLocation.x, this.pieceLocation.y +1));
+       			availableMoves.add(new Point(this.pieceLocation.x, this.pieceLocation.y +2));
 		}
 		
 		if( this.moveType == 2 ){
-			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y -1));
-       			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y -2));
+			availableMoves.add(new Point(this.pieceLocation.x, this.pieceLocation.y -1));
+       			availableMoves.add(new Point(this.pieceLocation.x, this.pieceLocation.y -2));
 		}
 		
 		 // Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
