@@ -14,7 +14,7 @@ public class Arrow extends ChessPiece {
 	private int moveType;
 
 	
-	public Arrow(String name, String color, int xCoord, int yCoord, String orientation) {
+	public Arrow(String name, String color, int xCoord, int yCoord, String orientation, int moveType) {
 		super(name, color, xCoord, yCoord);
 		this.orientation = orientation;
 		this.moveType = moveType
