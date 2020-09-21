@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * The Sun can only move one step in any direction. 
  * The game ends when the Sun is captured by the other side.
