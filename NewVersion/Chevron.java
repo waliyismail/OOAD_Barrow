@@ -7,7 +7,7 @@ import java.util.Iterator;
  * The Chevron moves in an L shape: 2 steps in one direction then 1 step perpendicular to it.
  * (Similar to the Knight in the normal chess.) 
  * It is the only piece that can skip over the other pieces.
- * @author WaliyIsmail
+ * @author WaliyIsmail and Ng Yoon Hin
  *
  */
 public class Chevron extends ChessPiece{
