@@ -145,7 +145,7 @@ public class Board extends JFrame implements ActionListener
     			orientation = "up";
     		}else 
     		{
-    			System.out.println("default ");
+    			//System.out.println("default ");
     		}
     		
     	}
@@ -160,12 +160,12 @@ public class Board extends JFrame implements ActionListener
     			orientation = "up";
     		}else 
     		{
-    			System.out.println("default ");
+    			//System.out.println("default ");
     		}
     		
     	}
     	p.reverseIcon(false);
-    	System.out.println(orientation);
+    	//System.out.println(orientation);
     	ImageIcon iconName = new ImageIcon(color+type+orientation+".png");
     	int index = pieceIndex(p.getLocation().x,p.getLocation().y);
     	
@@ -191,6 +191,9 @@ public class Board extends JFrame implements ActionListener
 	{
 	}
 	
+	/**
+	 * set all tile background to be white
+	 */
 	public void resetTileBackground()
 	{
 		for(JButton t : tiles) 
@@ -204,6 +207,9 @@ public class Board extends JFrame implements ActionListener
 		this.tiles[pieceIndex(x, y)].setIcon(null);
 	}
 	
+	/**
+	 * set all tiles to fresh new
+	 */
 	public void resetBoard()
 	{
 		for(JButton t : tiles) 
@@ -220,6 +226,30 @@ public class Board extends JFrame implements ActionListener
 		if(tiles[i].getIcon() == null) return false;
 		if(!tiles[i].getIcon().toString().contains(p.getColor())) return false;
 		return true;
+	}
+	
+	/**
+	 * get the x and y location of the tile with index
+	 * @param index
+	 * @return
+	 */
+	public Point tileCoordinate(int index) 
+	{
+		//JButton b = tiles[index];
+		int x = 0;
+		int y = 0;
+		for(int i = 0 ; i < WIDTH; i++) 
+		{
+			for(int j = 0 ; j < HEIGHT; j++) 
+			{
+				if(j*WIDTH+ i == index) 
+				{
+					x = j;
+					y = i;
+				}
+			}
+		}
+		return new Point(x,y);
 	}
 	
                    
