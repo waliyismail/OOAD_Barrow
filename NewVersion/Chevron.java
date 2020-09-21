@@ -11,15 +11,14 @@ import java.util.Iterator;
  *
  */
 public class Chevron extends ChessPiece{
-        int x ,y;
+        
 	public Chevron(String name, String color, int xCoord , int yCoord, String orientation)
 	{
 		super(name, color, xCoord, yCoord);
 		this.orientation = orientation;
 		// TODO Auto-generated constructor stub
 		
-		this.x=xCoord;
-		this.y=yCoord;
+		
 		generateMoves() ;
 		getAvailableMoves();
 		
@@ -31,17 +30,17 @@ public class Chevron extends ChessPiece{
 	    
 	availableMoves.clear();
 	
-	availableMoves.add(new Point(x-2, y+1));
-        availableMoves.add(new Point(x+2, y+1));
+	availableMoves.add(new Point(this.getLocation().x-2, this.getLocation().y+1));
+        availableMoves.add(new Point(this.getLocation().x+2, this.getLocation().y+1));
         
-        availableMoves.add(new Point(x+1, y+2));
-        availableMoves.add(new Point(x-1, y+2));
+        availableMoves.add(new Point(this.getLocation().x+1, this.getLocation().y+2));
+        availableMoves.add(new Point(this.getLocation().x-1, this.getLocation().y+2));
         
-        availableMoves.add(new Point(x+2, y-1));
-        availableMoves.add(new Point(x-2, y-1));
+        availableMoves.add(new Point(this.getLocation().x+2, this.getLocation().y-1));
+        availableMoves.add(new Point(this.getLocation().x-2, this.getLocation().y-1));
         
-        availableMoves.add(new Point(x+1, y-2));
-        availableMoves.add(new Point(x-1, y-2));
+        availableMoves.add(new Point(this.getLocation().x+1, this.getLocation().y-2));
+        availableMoves.add(new Point(this.getLocation().x-1, this.getLocation().y-2));
 		
 	// Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
         Iterator<Point> iter = availableMoves.iterator();
