@@ -10,36 +10,28 @@ import java.util.ArrayList;
  *
  */
 public class Arrow extends ChessPiece {
-	private static int turn = 1;
+	//Used to determine the way of moving
+	private int moveType;
 
 	
 	public Arrow(String name, String color, int xCoord, int yCoord, String orientation) {
 		super(name, color, xCoord, yCoord);
 		this.orientation = orientation;
+		this.moveType = moveType
 	}
 
 	@Override
 	public void generateMoves() {
 		// TODO Auto-generated method stub
 		availableMoves.clear();
-		if( (turn == 1 && this.color == blue) ){
+		if( this.moveType == 1 ){
 			availableMoves.add(new Point(xCoord, yCoord+1));
        			availableMoves.add(new Point(xCoord, yCoord+2));
 		}
 		
-		if( (turn == 1 && this.color == red) ){
+		if( this.moveType == 2 ){
 			availableMoves.add(new Point(xCoord, yCoord-1));
        			availableMoves.add(new Point(xCoord, yCoord-2));
-		}
-		
-		if( (turn == 2 && this.color == blue) ){
-			availableMoves.add(new Point(xCoord, yCoord-1));
-       			availableMoves.add(new Point(xCoord, yCoord-2));
-		}
-		
-		if( (turn == 2 && this.color == red) ){
-			availableMoves.add(new Point(xCoord, yCoord+1));
-       			availableMoves.add(new Point(xCoord, yCoord+2));
 		}
 	}
 
@@ -51,11 +43,12 @@ public class Arrow extends ChessPiece {
 	
 	//to be called when flipping the board
 	public void changeArrowMovement(){
-		if(Arrow.turn == 1){
-			Arrow.turn = 2;
+		if ( this.moveType == 1 ){
+			this.moveType = 2;
 		}
-		else{
-			Arrow.turn = 1;
+		
+		if( this.moveType == 2 ){
+			this.moveType = 1;
 		}
 	}
 }
