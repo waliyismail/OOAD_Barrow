@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.*;
+import java.util.Iterator;
 
 /**
  * The Arrow can only move 1 or 2 steps forward each time,
@@ -27,13 +27,13 @@ public class Arrow extends ChessPiece {
 		// TODO Auto-generated method stub
 		availableMoves.clear();
 		if( this.moveType == 1 ){
-			availableMoves.add(new Point(this.pieceLocation.x, this.pieceLocation.y +1));
-       			availableMoves.add(new Point(this.pieceLocation.x, this.pieceLocation.y +2));
+			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y +1));
+       			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y +2));
 		}
 		
 		if( this.moveType == 2 ){
-			availableMoves.add(new Point(this.pieceLocation.x, this.pieceLocation.y -1));
-       			availableMoves.add(new Point(this.pieceLocation.x, this.pieceLocation.y -2));
+			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y -1));
+       			availableMoves.add(new Point(this.getLocation().x, this.getLocation().y -2));
 		}
 		
 		 // Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
@@ -67,12 +67,12 @@ public class Arrow extends ChessPiece {
 	
 	//check location to see whether the Arrow piece is in the last roll, if so flip it
 	public void checkLocation(){
-		if ( this.pieceLocation.y == 8 ){
+		if ( this.getLocation().y == 8 ){
 			this.changeArrowMovement();
 			this.orientation = "down";
 		}
 		
-		if ( this.pieceLocation.y == 1 ){
+		if ( this.getLocation().y == 1 ){
 			this.changeArrowMovement();
 			this.orientation = "up";
 		}
