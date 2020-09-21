@@ -3,10 +3,12 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 
 /**
  * initiate all the state of the game
@@ -17,6 +19,9 @@ import javax.swing.JButton;
  */
 public class Game {
 	
+	private static final int DEFAULT = 0;
+	private static final int SELECT = 1;
+	private static final int MOVE = 2;
 	private static Game single_instance = null; // ensure game is only instantiate one
 	private Board gameBoard;
 	private Sun redSun;
@@ -42,8 +47,9 @@ public class Game {
 	private Arrow blueArrow3;
 	private Arrow blueArrow4;
 	private ArrayList<ChessPiece> chessPieces;
-	int moveflag = 1; // each player needs to click 2 times, one choose pieces to move, another one is the location to move
-
+	//int moveflag = 1; // each player needs to click 2 times, one choose pieces to move, another one is the location to move
+	static volatile int numofclicks = SELECT; 
+	static volatile ChessPiece curr;
 	private Game() {
 		
 		chessPieces = new ArrayList<>();
@@ -121,7 +127,11 @@ public class Game {
 	 */
 	public void pieceMovement() {
 		
-		int numofclicks = 0; // number of clicks determine the state of the listener
+		// number of clicks determine the state of the listener
+		// 1 -> select pieces
+		// 2 -> move pieces
+		// 0 -> default, select empty tile or opponent pieces
+
 		// add listener for every tiles
 		JButton[] tiles = gameBoard.getTiles();
 		for(JButton t : tiles) 
@@ -131,24 +141,79 @@ public class Game {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO listener varies with condition
+
 					if(t.getIcon() == null) 
 					{
 						// not assigned with any chesspieces
 						// check flag - move to new location/ do nothing
-						if(true) {
+						switch(numofclicks) 
+						{
+						
+							case SELECT:
+								// do nothing
+								System.out.println("no icon, select");
+								numofclicks = SELECT;
+								break;
+								
+							case MOVE:
+								// change to this location
+								System.out.println("no icon, move");
+								if(curr != null) 
+								{
+									//curr.nextTile()
+									//pieceMove(curr, Arrays.asList(tiles).indexOf(t) ));
+									gameBoard.flipBoard(chessPieces);
+								}
+								numofclicks = SELECT;
+								break;
+								
+							default:
+								System.out.println("no icon, default");
+								numofclicks = SELECT;
 							
 						}
+
 					}else 
 					{
+						// tile contains a piece
 						// highlight available
 						// kill opponent piece
+						switch(numofclicks) 
+						{
+						
+							case SELECT:
+								// show available move
+								System.out.println("got icon, select");
+								curr = getPiece(Arrays.asList(tiles).indexOf(t));
+								System.out.print("clicked " + curr.getName());
+								highlightMove(curr);
+								numofclicks = MOVE;
+								break;
+								
+							case MOVE:
+								// check if it is opponent or not
+								// kill the opponent
+								// remove chesspiece from array
+								//pieceMove(p, new Point(t.getX(), t.getY()));
+								if(curr == null)
+								{
+									// clicked friendly tiles
+									
+								}else 
+								{
+									//if()
+									gameBoard.flipBoard(chessPieces);
+								}
+								System.out.println("got icon, move");
+								numofclicks = SELECT;
+								break;
+								
+							default:
+								System.out.println("got icon, default");
+								numofclicks = SELECT;
+							
+						}
 					}
-					
-					if(false) 
-					{
-						// if player turns done, flipboard else biar lu
-					}
-					gameBoard.flipBoard(chessPieces);
 					
 				}});
 		}
@@ -191,16 +256,45 @@ public class Game {
 		
 		
 	}
+	public void highlightMove(ChessPiece p) {
+		
+		Iterator<Point> iter = p.getAvailableMoves().iterator();
+		System.out.print(p.getAvailableMoves());
+		while(iter.hasNext()){
+			Point tile = iter.next();
+			JButton t = gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y));
+			toggleHighlight(t);
+			//t.setBackground(Color.cyan);
+		}
+	}
+
+	public ChessPiece getPiece(int index) 
+	{
+		System.out.println(index);
+		
+		for(ChessPiece p : chessPieces) 
+		{
+			int i = gameBoard.pieceIndex(p.getLocation().x, p.getLocation().y);
+			if( index == i)
+			{
+				// got same
+				return p; 
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * move current pieces to new location
 	 * @param p Piece
 	 * @param nextLocation Coordinate to be moved
 	 */
-	public void pieceMove(ChessPiece p, Point nextLocation) 
+	public void pieceMove(ChessPiece p, int index) 
 	{
 		gameBoard.resetTileIcon(p.getLocation().x, p.getLocation().y);
-		p.setLocation(nextLocation.x, nextLocation.y);
+		int x = index/8;
+		int y = index;
+		p.setLocation(x, y);
 		p.generateMoves();
 		gameBoard.pieceSetup(p);
 	}
