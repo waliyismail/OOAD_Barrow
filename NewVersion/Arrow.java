@@ -51,14 +51,21 @@ public class Arrow extends ChessPiece {
 		return this.availableMoves;
 	}
 	
-	//to be called when flipping the board or when Arrow reaches last row
+	//to be called when flipping the board
 	public void changeArrowMovement(){
-		if( this.moveType == 1 ){
+		if ( this.moveType == 1 ){
 			this.moveType = 2;
 		}
 		
-		if( this.moveType == 2 ){
+		if ( this.moveType == 2 ){
 			this.moveType = 1;
+		}
+	}
+	
+	//check location to see whether the Arrow piece is in the last roll, if so flip it
+	public void checkLocation(){
+		if ( this.pieceLocation.y == 8 || this.pieceLocation.y == 1){
+			this.changeArrowMovement();
 		}
 	}
 }
