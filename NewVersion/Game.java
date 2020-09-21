@@ -57,10 +57,10 @@ public class Game {
 		redTriangle2 = new Triangle("triangle", "red", 0, 5, "down");
 		redPlus1 = new Plus("plus", "red", 0, 0);
 		redPlus2 = new Plus("plus", "red", 0, 6);
-		redArrow1 = new Arrow("Arrow","red", 1, 0, "down", 2);
-		redArrow2 = new Arrow("Arrow","red", 1, 2,"down", 2);
-		redArrow3 = new Arrow("Arrow","red", 1, 4,"down", 2);
-		redArrow4 = new Arrow("Arrow","red", 1, 6, "down", 2);
+		redArrow1 = new Arrow("Arrow","red", 1, 0, "down", 1);
+		redArrow2 = new Arrow("Arrow","red", 1, 2,"down", 1);
+		redArrow3 = new Arrow("Arrow","red", 1, 4,"down", 1);
+		redArrow4 = new Arrow("Arrow","red", 1, 6, "down", 1);
 		
 		chessPieces.add(redSun);
 		chessPieces.add(redChevron1);
@@ -94,10 +94,10 @@ public class Game {
 		blueTriangle2 = new Triangle("triangle", "blue", 7, 5, "up");
 		bluePlus1 = new Plus("plus", "blue", 7, 0);
 		bluePlus2 = new Plus("plus", "blue", 7, 6);
-		blueArrow1 = new Arrow("Arrow","blue", 6, 0, "up", 1);
-		blueArrow2 = new Arrow("Arrow","blue", 6, 2, "up", 1);
-		blueArrow3 = new Arrow("Arrow","blue", 6, 4, "up", 1);
-		blueArrow4 = new Arrow("Arrow","blue", 6, 6, "up", 1);
+		blueArrow1 = new Arrow("Arrow","blue", 6, 0, "up", 2);
+		blueArrow2 = new Arrow("Arrow","blue", 6, 2, "up", 2);
+		blueArrow3 = new Arrow("Arrow","blue", 6, 4, "up", 2);
+		blueArrow4 = new Arrow("Arrow","blue", 6, 6, "up", 2);
 		
 		chessPieces.add(blueSun);
 		chessPieces.add(blueChevron1);
