@@ -64,8 +64,14 @@ public class Arrow extends ChessPiece {
 	
 	//check location to see whether the Arrow piece is in the last roll, if so flip it
 	public void checkLocation(){
-		if ( this.pieceLocation.y == 8 || this.pieceLocation.y == 1){
+		if ( this.pieceLocation.y == 8 ){
 			this.changeArrowMovement();
+			this.orientation = "down";
+		}
+		
+		if ( this.pieceLocation.y == 1 ){
+			this.changeArrowMovement();
+			this.orientation = "up";
 		}
 	}
 }
