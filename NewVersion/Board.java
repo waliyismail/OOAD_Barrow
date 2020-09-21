@@ -52,15 +52,26 @@ public class Board extends JFrame implements ActionListener
     3) flip board
     4) which player move
 */
-    public void flipBoard()
+    public void flipBoard(ArrayList<ChessPiece> cp)
     {
-
+    	resetBoard();
+    	for(ChessPiece c : cp) 
+    	{
+    		int x = c.getLocation().x;
+    		int y = c.getLocation().y;
+    		int newX = HEIGHT-1-x;
+    		int newY = WIDTH-1-y;
+    		c.setLocation(newX, newY);
+    		c.reverseIcon(true);
+    		pieceSetup(c);
+    	}
         // the grid stays the same
         // change the location(coordinate) using algorithm
         // record the coordinate
         // tilenumber = x + y*WIDTH <-- get the specific JButton(tiles) index 
         // newx = width-1-x , newy = height -1-y
         // newtilenumber = newx + newy*WIDTH
+    	
     }
     
     
@@ -104,16 +115,29 @@ public class Board extends JFrame implements ActionListener
      */
     public void pieceSetup(ChessPiece p) 
     {
+    	p.generateMoves();
     	char color = p.getColor().toString().charAt(0);
     	String type = p.getName();
     	String orientation=p.getOrientation();
-    	ImageIcon iconName = new ImageIcon(color+type+orientation+".png");
-    	int index = pieceIndex(p.getLocation().x,p.getLocation().y);
-    	//TODO set tile disable if not current player
-    	if(color == 'r') {
+    	
+    	if(p.getReverse()) 
+    	{
+    		if(orientation.contentEquals("up")) {
+    			orientation = "down";
+    		}else if(orientation.contentEquals("up")) 
+    		{
+    			orientation = "up";
+    		}
     		
-    		tiles[index].setEnabled(false);;
     	}
+    	ImageIcon iconName = new ImageIcon("src/"+color+type+orientation+".png");
+    	int index = pieceIndex(p.getLocation().x,p.getLocation().y);
+    	
+    	//TODO set tile disable if not current player
+//    	if(color == 'r') {
+//    		
+//    		tiles[index].setEnabled(false);;
+//    	}
 		tiles[index].setIcon(iconName);
 		tiles[index].setDisabledIcon(iconName);
     	
@@ -144,6 +168,16 @@ public class Board extends JFrame implements ActionListener
 		this.tiles[pieceIndex(x, y)].setIcon(null);
 	}
 	
+	public void resetBoard()
+	{
+		for(JButton t : tiles) 
+		{
+			t.setIcon(null);
+			t.setDisabledIcon(null);
+			t.setEnabled(true);
+			t.setBackground(Color.WHITE);
+		}
+	}
 	public boolean hasFriendlytile(ChessPiece p, int x, int y) 
 	{
 		int i = pieceIndex(x,y);
