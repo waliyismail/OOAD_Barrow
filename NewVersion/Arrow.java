@@ -44,6 +44,7 @@ public class Arrow extends ChessPiece {
        			if(move.x > 7 || move.x < 0 || move.y > 8 || move.y < 0){
         	        	iter.remove();
           		}
+			
 		}
         }	
 
