@@ -44,11 +44,11 @@ public class Game {
 	private ArrayList<ChessPiece> chessPieces;
 	int moveflag = 1; // each player needs to click 2 times, one choose pieces to move, another one is the location to move
 
-	public Game() {
+	private Game() {
 		
 		chessPieces = new ArrayList<>();
 		gameBoard = new Board();
-	
+
 		//red pieces
 		redSun = new Sun("sun", "red", 0, 3);
 		redChevron1 = new Chevron("chevron", "red", 0, 2, "down");
@@ -57,10 +57,10 @@ public class Game {
 		redTriangle2 = new Triangle("triangle", "red", 0, 5, "down");
 		redPlus1 = new Plus("plus", "red", 0, 0);
 		redPlus2 = new Plus("plus", "red", 0, 6);
-		redArrow1 = new Arrow("Arrow","red", 1, 0, "down", 1);
-		redArrow2 = new Arrow("Arrow","red", 1, 2,"down", 1);
-		redArrow3 = new Arrow("Arrow","red", 1, 4,"down", 1);
-		redArrow4 = new Arrow("Arrow","red", 1, 6, "down", 1);
+		redArrow1 = new Arrow("Arrow","red", 1, 0, "down");
+		redArrow2 = new Arrow("Arrow","red", 1, 2,"down");
+		redArrow3 = new Arrow("Arrow","red", 1, 4,"down");
+		redArrow4 = new Arrow("Arrow","red", 1, 6, "down");
 		
 		chessPieces.add(redSun);
 		chessPieces.add(redChevron1);
@@ -73,18 +73,6 @@ public class Game {
 		chessPieces.add(redArrow2);
 		chessPieces.add(redArrow3);
 		chessPieces.add(redArrow4);
-
-		gameBoard.pieceSetup(redSun);
-		gameBoard.pieceSetup(redChevron1);
-		gameBoard.pieceSetup(redChevron2);
-		gameBoard.pieceSetup(redTriangle1);
-		gameBoard.pieceSetup(redTriangle2);
-		gameBoard.pieceSetup(redPlus1);
-		gameBoard.pieceSetup(redPlus2);
-		gameBoard.pieceSetup(redArrow1);
-		gameBoard.pieceSetup(redArrow2);
-		gameBoard.pieceSetup(redArrow3);
-		gameBoard.pieceSetup(redArrow4);
 		
 		//blue pieces
 		blueSun = new Sun("sun", "blue", 7, 3);
@@ -94,10 +82,10 @@ public class Game {
 		blueTriangle2 = new Triangle("triangle", "blue", 7, 5, "up");
 		bluePlus1 = new Plus("plus", "blue", 7, 0);
 		bluePlus2 = new Plus("plus", "blue", 7, 6);
-		blueArrow1 = new Arrow("Arrow","blue", 6, 0, "up", 2);
-		blueArrow2 = new Arrow("Arrow","blue", 6, 2, "up", 2);
-		blueArrow3 = new Arrow("Arrow","blue", 6, 4, "up", 2);
-		blueArrow4 = new Arrow("Arrow","blue", 6, 6, "up", 2);
+		blueArrow1 = new Arrow("Arrow","blue", 6, 0, "up");
+		blueArrow2 = new Arrow("Arrow","blue", 6, 2, "up");
+		blueArrow3 = new Arrow("Arrow","blue", 6, 4, "up");
+		blueArrow4 = new Arrow("Arrow","blue", 6, 6, "up");
 		
 		chessPieces.add(blueSun);
 		chessPieces.add(blueChevron1);
@@ -111,27 +99,17 @@ public class Game {
 		chessPieces.add(blueArrow3);
 		chessPieces.add(blueArrow4);
 		
-		gameBoard.pieceSetup(blueSun);
-		gameBoard.pieceSetup(blueChevron1);
-		gameBoard.pieceSetup(blueChevron2);
-		gameBoard.pieceSetup(blueTriangle1);
-		gameBoard.pieceSetup(blueTriangle2);
-		gameBoard.pieceSetup(bluePlus1);
-		gameBoard.pieceSetup(bluePlus2);
-		gameBoard.pieceSetup(blueArrow1);
-		gameBoard.pieceSetup(blueArrow2);
-		gameBoard.pieceSetup(blueArrow3);
-		gameBoard.pieceSetup(blueArrow4);
+		gameSetup();
 		pieceMovement();
 
 	}
 	
 	public static Game getInstance() 
 	{
-		if (single_instance == null){ 
-            		single_instance = new Game();
-		}
-        	return single_instance;
+		if (single_instance == null) 
+            single_instance = new Game(); 
+  
+        return single_instance;
 	}
 	public void checkWinner() {};
 	/**
@@ -143,40 +121,73 @@ public class Game {
 	 */
 	public void pieceMovement() {
 		
-		for(ChessPiece p : chessPieces) 
+		int numofclicks = 0; // number of clicks determine the state of the listener
+		// add listener for every tiles
+		JButton[] tiles = gameBoard.getTiles();
+		for(JButton t : tiles) 
 		{
-			JButton pieceTile = gameBoard.getTile(gameBoard.pieceIndex(p.getLocation().x, p.getLocation().y));
-			System.out.println(pieceTile.getName());
-			
-			pieceTile.addActionListener(new ActionListener(){
-				
+			t.addActionListener(new ActionListener() {
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
-					gameBoard.resetTileBackground();
-					Iterator<Point> iter = p.getAvailableMoves().iterator();
-					System.out.print(p.getAvailableMoves());
-					while(iter.hasNext()){
-						Point tile = iter.next();
-						JButton t = gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y));
-						t.addActionListener(new ActionListener() {
-
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								gameBoard.resetTileBackground();
-								pieceMove(p,new Point(tile.x,tile.y));
-								t.removeActionListener(this);
-							}
+					// TODO listener varies with condition
+					if(t.getIcon() == null) 
+					{
+						// not assigned with any chesspieces
+						// check flag - move to new location/ do nothing
+						if(true) {
 							
-						});
-						t.setBackground(Color.cyan);
+						}
+					}else 
+					{
+						// highlight available
+						// kill opponent piece
 					}
-					pieceTile.removeActionListener(this);
-				}
-				
-			});
-			
+					
+					if(false) 
+					{
+						// if player turns done, flipboard else biar lu
+					}
+					gameBoard.flipBoard(chessPieces);
+					
+				}});
 		}
+//		for(ChessPiece p : chessPieces) 
+//		{
+//			JButton pieceTile = gameBoard.getTile(gameBoard.pieceIndex(p.getLocation().x, p.getLocation().y));
+//			System.out.println(pieceTile.getName());
+//			
+//			pieceTile.addActionListener(new ActionListener(){
+//				
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					
+//					gameBoard.resetTileBackground();
+//					gameBoard.flipBoard(chessPieces);
+//					Iterator<Point> iter = p.getAvailableMoves().iterator();
+//					System.out.print(p.getAvailableMoves());
+//					while(iter.hasNext()){
+//						Point tile = iter.next();
+//						JButton t = gameBoard.getTile(gameBoard.pieceIndex(tile.x, tile.y));
+//						toggleHighlight(t);
+////						t.addActionListener(new ActionListener() {
+////
+////							@Override
+////							public void actionPerformed(ActionEvent e) {
+////								gameBoard.resetTileBackground();
+////								pieceMove(p,new Point(tile.x,tile.y));
+////								t.removeActionListener(this);
+////							}
+////							
+////						});
+//						//t.setBackground(Color.cyan);
+//					}
+//					pieceTile.removeActionListener(this);
+//				}
+//				
+//			});
+			
+//		}
 		
 		
 	}
@@ -194,6 +205,34 @@ public class Game {
 		gameBoard.pieceSetup(p);
 	}
 	
+	/**
+	 * update board if any piece movement
+	 */
+	public void updateBoard() {};
+	
+	public void gameSetup() {
+		for(ChessPiece c : chessPieces) 
+		{
+			if(c.getColor().contains("red")) 
+			{
+				c.setCurrentTurn(false);
+			}
+			else 
+			{
+				c.setCurrentTurn(true);
+			}
+			gameBoard.pieceSetup(c);
+		}
+	}
+	public void toggleHighlight(JButton b) 
+	{
+		if(b.getBackground().equals(Color.white)) 
+		{
+			b.setBackground(Color.cyan);
+			
+		}
+		b.getBackground().equals(Color.white);
+	}
 	
 	public Board getGameBoard() {
 		return gameBoard;
