@@ -11,12 +11,13 @@ import javax.swing.ImageIcon;
  */
 public abstract class ChessPiece
 {
-	String pieceName;
-    String pieceColor;
-    Point pieceLocation;
-    ArrayList<Point> availableMoves;
-    boolean reverse = false;
-	String orientation = "" ;
+	private String pieceName;
+	private String pieceColor;
+	private Point pieceLocation;
+	protected ArrayList<Point> availableMoves;
+	private boolean reverse = false;
+	private boolean currentTurn;
+	protected String orientation = "" ;
 	//Game game;
     public ChessPiece(String name, String color, int xCoord , int yCoord)
     {
@@ -48,6 +49,7 @@ public abstract class ChessPiece
     
     /**
      * delegation of hasFriendlyTile
+     * not working
      * @param x
      * @param y
      * @return
@@ -105,11 +107,19 @@ public abstract class ChessPiece
 	 */
 	public void reverseIcon(boolean r) 
 	{
-		reverse = r;
+		this.reverse = r;
 	}
 	public boolean getReverse() 
 	{
 		return reverse;
+	}
+
+	public boolean currentTurn() {
+		return currentTurn;
+	}
+
+	public void setCurrentTurn(boolean currentTurn) {
+		this.currentTurn = currentTurn;
 	}
 	
 }
