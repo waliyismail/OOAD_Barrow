@@ -22,21 +22,38 @@ int x,y;
 	public void generateMoves() {
 		
 	availableMoves.clear();
-	availableMoves.add(new Point(x+1, y+1));
-        availableMoves.add(new Point(x+2, y+2));
-        availableMoves.add(new Point(x-1, y-1));
-        availableMoves.add(new Point(x-2, y-2));
-        availableMoves.add(new Point(x+1, y-1));
-        availableMoves.add(new Point(x+2, y-2));
-        availableMoves.add(new Point(x-1, y+1));
-        availableMoves.add(new Point(x-2, y+2));
+	availableMoves.add(new Point(x-1, y+1));
+	 availableMoves.add(new Point(x-2, y+2));
+	 availableMoves.add(new Point(x-3, y+3));
+	 availableMoves.add(new Point(x-4, y+4));
+	 availableMoves.add(new Point(x-5, y+5));
+	 
+	 availableMoves.add(new Point(x+1, y-1));
+	 availableMoves.add(new Point(x+2, y-2));
+	 availableMoves.add(new Point(x+3, y-3));
+	 availableMoves.add(new Point(x+4, y-4));
+	 availableMoves.add(new Point(x+5, y-5));
+	 
+         availableMoves.add(new Point(x-1, y-1));
+         availableMoves.add(new Point(x-2, y-2));
+         availableMoves.add(new Point(x-3, y-3));
+         availableMoves.add(new Point(x-4, y-4));
+         availableMoves.add(new Point(x-5, y-5));
+         availableMoves.add(new Point(x-6, y-6));
+        
+         availableMoves.add(new Point(x+1, y+1));
+         availableMoves.add(new Point(x+2, y+2));
+         availableMoves.add(new Point(x+3, y+3));
+         availableMoves.add(new Point(x+4, y+4));
+         availableMoves.add(new Point(x+5, y+5));
+         availableMoves.add(new Point(x+6, y+6));
 		
 		// Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
         Iterator<Point> iter = availableMoves.iterator();
 
         while(iter.hasNext()){
             Point move = iter.next();
-            if(move.x > 7 || move.x < 0 || move.y > 8 || move.y < 0){
+            if(move.x > 7 || move.x < 0 || move.y > 6 || move.y < 0){
                 iter.remove();
 		
 	}
