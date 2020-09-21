@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * The Arrow can only move 1 or 2 steps forward each time,
