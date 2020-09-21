@@ -33,12 +33,22 @@ public class Arrow extends ChessPiece {
 			availableMoves.add(new Point(xCoord, yCoord-1));
        			availableMoves.add(new Point(xCoord, yCoord-2));
 		}
-	}
+		
+		 // Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
+		Iterator<Point> iter = availableMoves.iterator();
+		
+		while(iter.hasNext()){
+			Point move = iter.next();
+       			if(move.x > 7 || move.x < 0 || move.y > 8 || move.y < 0){
+        	        	iter.remove();
+          		}
+		}
+        }	
 
 	@Override
 	public ArrayList<Point> getAvailableMoves() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.availableMoves;
 	}
 	
 	//to be called when flipping the board
