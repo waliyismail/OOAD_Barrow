@@ -35,6 +35,7 @@ public class Board extends JFrame implements ActionListener
         setLayout(new BorderLayout());
         
         gameBoard.setBackground(Color.blue);
+        saveButton.setName("save");
         optionBar.add(saveButton);
         optionBar.add(loadButton);
         initBoard();        
@@ -52,6 +53,12 @@ public class Board extends JFrame implements ActionListener
     3) flip board
     4) which player move
 */
+    /**
+     * move the chess pieces to opposite tiles
+     * reverses the icon if flipped
+     * @param cp array of chess piece
+     * @author waliy
+     */
     public void flipBoard(ArrayList<ChessPiece> cp)
     {
     	resetBoard();
@@ -62,7 +69,14 @@ public class Board extends JFrame implements ActionListener
     		int newX = HEIGHT-1-x;
     		int newY = WIDTH-1-y;
     		c.setLocation(newX, newY);
-    		c.reverseIcon(true);
+    		if(c.currentTurn()) {
+    			c.reverseIcon(false);
+    			c.setCurrentTurn(false);
+    		}else {
+    			c.setCurrentTurn(true);
+    			c.reverseIcon(true);
+    		}
+    		//c.reverseIcon(true);
     		pieceSetup(c);
     	}
         // the grid stays the same
@@ -94,7 +108,7 @@ public class Board extends JFrame implements ActionListener
             tiles[i].setBackground(Color.WHITE);
             tiles[i].setName(Integer.toString(i));
             gameBoard.add(tiles[i]);
-            tiles[i].addActionListener(this);
+            //tiles[i].addActionListener(this);
         }
         
     }
@@ -110,7 +124,7 @@ public class Board extends JFrame implements ActionListener
     }
     
     /**
-     * Set ups the board with initial piece placement
+     * Set ups the board with piece placement
      * @param p
      */
     public void pieceSetup(ChessPiece p) 
@@ -120,24 +134,46 @@ public class Board extends JFrame implements ActionListener
     	String type = p.getName();
     	String orientation=p.getOrientation();
     	
-    	if(p.getReverse()) 
+    	// reverse blue when not current turn
+    	if(!p.currentTurn() && p.getColor().contentEquals("blue")) 
     	{
+    		//System.out.println("reverse");
     		if(orientation.contentEquals("up")) {
     			orientation = "down";
-    		}else if(orientation.contentEquals("up")) 
+    		}else if(orientation.contentEquals("down")) 
     		{
     			orientation = "up";
+    		}else 
+    		{
+    			System.out.println("default ");
     		}
     		
     	}
+    	// reverse blue when current turn
+    	if(p.currentTurn() && p.getColor().contentEquals("red")) 
+    	{
+    		//System.out.println("reverse");
+    		if(orientation.contentEquals("up")) {
+    			orientation = "down";
+    		}else if(orientation.contentEquals("down")) 
+    		{
+    			orientation = "up";
+    		}else 
+    		{
+    			System.out.println("default ");
+    		}
+    		
+    	}
+    	p.reverseIcon(false);
+    	System.out.println(orientation);
     	ImageIcon iconName = new ImageIcon(color+type+orientation+".png");
     	int index = pieceIndex(p.getLocation().x,p.getLocation().y);
     	
     	//TODO set tile disable if not current player
-//    	if(color == 'r') {
-//    		
-//    		tiles[index].setEnabled(false);;
-//    	}
+    	if(!p.currentTurn()) {
+    		
+    		tiles[index].setEnabled(false);;
+    	}
 		tiles[index].setIcon(iconName);
 		tiles[index].setDisabledIcon(iconName);
     	
