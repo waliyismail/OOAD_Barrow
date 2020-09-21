@@ -23,31 +23,31 @@ int x,y;
 	public void generateMoves() {
 		
 	availableMoves.clear();
-	 availableMoves.add(new Point(x-1, y+1));
-	 availableMoves.add(new Point(x-2, y+2));
-	 availableMoves.add(new Point(x-3, y+3));
-	 availableMoves.add(new Point(x-4, y+4));
-	 availableMoves.add(new Point(x-5, y+5));
+	 availableMoves.add(new Point(this.getLocation().x-1, this.getLocation().y+1));
+	 availableMoves.add(new Point(this.getLocation().x-2, this.getLocation().y+2));
+	 availableMoves.add(new Point(this.getLocation().x-3, this.getLocation().y+3));
+	 availableMoves.add(new Point(this.getLocation().x-4, this.getLocation().y+4));
+	 availableMoves.add(new Point(this.getLocation().x-5, this.getLocation().y+5));
 	 
-	 availableMoves.add(new Point(x+1, y-1));
-	 availableMoves.add(new Point(x+2, y-2));
-	 availableMoves.add(new Point(x+3, y-3));
-	 availableMoves.add(new Point(x+4, y-4));
-	 availableMoves.add(new Point(x+5, y-5));
+	 availableMoves.add(new Point(this.getLocation().x+1, this.getLocation().y-1));
+	 availableMoves.add(new Point(this.getLocation().x+2, this.getLocation().y-2));
+	 availableMoves.add(new Point(this.getLocation().x+3, this.getLocation().y-3));
+	 availableMoves.add(new Point(this.getLocation().x+4, this.getLocation().y-4));
+	 availableMoves.add(new Point(this.getLocation().x+5, this.getLocation().y-5));
 	 
-         availableMoves.add(new Point(x-1, y-1));
-         availableMoves.add(new Point(x-2, y-2));
-         availableMoves.add(new Point(x-3, y-3));
-         availableMoves.add(new Point(x-4, y-4));
-         availableMoves.add(new Point(x-5, y-5));
-         availableMoves.add(new Point(x-6, y-6));
+         availableMoves.add(new Point(this.getLocation().x-1, this.getLocation().y-1));
+         availableMoves.add(new Point(this.getLocation().x-2, this.getLocation().y-2));
+         availableMoves.add(new Point(this.getLocation().x-3, this.getLocation().y-3));
+         availableMoves.add(new Point(this.getLocation().x-4, this.getLocation().y-4));
+         availableMoves.add(new Point(this.getLocation().x-5, this.getLocation().y-5));
+         availableMoves.add(new Point(this.getLocation().x-6, this.getLocation().y-6));
         
-         availableMoves.add(new Point(x+1, y+1));
-         availableMoves.add(new Point(x+2, y+2));
-         availableMoves.add(new Point(x+3, y+3));
-         availableMoves.add(new Point(x+4, y+4));
-         availableMoves.add(new Point(x+5, y+5));
-         availableMoves.add(new Point(x+6, y+6));
+         availableMoves.add(new Point(this.getLocation().x+1, this.getLocation().y+1));
+         availableMoves.add(new Point(this.getLocation().x+2, this.getLocation().y+2));
+         availableMoves.add(new Point(this.getLocation().x+3, this.getLocation().y+3));
+         availableMoves.add(new Point(this.getLocation().x+4, this.getLocation().y+4));
+         availableMoves.add(new Point(this.getLocation().x+5, this.getLocation().y+5));
+         availableMoves.add(new Point(this.getLocation().x+6, this.getLocation().y+6));
 		
 		// Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
         Iterator<Point> iter = availableMoves.iterator();
