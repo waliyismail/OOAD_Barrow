@@ -130,7 +130,7 @@ public class Board extends JFrame implements ActionListener
     		}
     		
     	}
-    	ImageIcon iconName = new ImageIcon("src/"+color+type+orientation+".png");
+    	ImageIcon iconName = new ImageIcon(color+type+orientation+".png");
     	int index = pieceIndex(p.getLocation().x,p.getLocation().y);
     	
     	//TODO set tile disable if not current player
