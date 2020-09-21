@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * The Triangle can move any number of steps diagonally
  * @author waliyismail
@@ -22,7 +23,7 @@ int x,y;
 	public void generateMoves() {
 		
 	availableMoves.clear();
-	availableMoves.add(new Point(x-1, y+1));
+	 availableMoves.add(new Point(x-1, y+1));
 	 availableMoves.add(new Point(x-2, y+2));
 	 availableMoves.add(new Point(x-3, y+3));
 	 availableMoves.add(new Point(x-4, y+4));
@@ -57,7 +58,7 @@ int x,y;
                 iter.remove();
 		
 	}
-
+}}
 	@Override
 	public ArrayList<Point> getAvailableMoves() {
 		// TODO Auto-generated method stub
