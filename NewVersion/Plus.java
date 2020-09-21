@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
-
+import java.util.Iterator;
 /**
  * The Plus can move any number of steps up and down, or left and right.
  * @author waliyismail
@@ -9,20 +9,20 @@ import java.util.ArrayList;
  */
 public class Plus extends ChessPiece {
 
-	int x ,y;
-	public Plus(String name, String color, int xCoord, int yCoord) {
-		super(name, color, xCoord, yCoord);
-		this.x=xCoord;
-		this.y=yCoord;
-		generateMoves() ;
-		getAvailableMoves();
-	}
+    int x ,y;
+    public Plus(String name, String color, int xCoord, int yCoord) {
+        super(name, color, xCoord, yCoord);
+        this.x=xCoord;
+        this.y=yCoord;
+        generateMoves() ;
+        getAvailableMoves();
+    }
 
-	@Override
-	public void generateMoves() {
-		availableMoves.clear();
-	
-	availableMoves.add(new Point(x, y+1));
+    @Override
+    public void generateMoves() {
+        availableMoves.clear();
+        
+        availableMoves.add(new Point(x, y+1));
         availableMoves.add(new Point(x, y+2));
         availableMoves.add(new Point(x, y+3));
         availableMoves.add(new Point(x, y+4));
@@ -52,23 +52,22 @@ public class Plus extends ChessPiece {
         availableMoves.add(new Point(x-6, y));
         availableMoves.add(new Point(x-7, y));
         
-		
-	
-		
-	// Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
+        
+        
+    // Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them 
         Iterator<Point> iter = availableMoves.iterator();
 
         while(iter.hasNext()){
             Point move = iter.next();
-            if(move.x > 7 || move.x < 0 || move.y > 6|| move.y < 0){
+            if(move.x > 7 || move.x < 0 || move.y > 6 || move.y < 0){
                 iter.remove();
-		
-	}
-
-	@Override
-	public ArrayList<Point> getAvailableMoves() {
-		// TODO Auto-generated method stub
-		return availableMoves;
-	}
+        
+    }
+}}
+    @Override
+    public ArrayList<Point> getAvailableMoves() {
+        // TODO Auto-generated method stub
+        return availableMoves;
+    }
 
 }
