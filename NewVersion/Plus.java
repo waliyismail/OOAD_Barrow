@@ -9,11 +9,10 @@ import java.util.Iterator;
  */
 public class Plus extends ChessPiece {
 
-    int x ,y;
+
     public Plus(String name, String color, int xCoord, int yCoord) {
         super(name, color, xCoord, yCoord);
-        this.x=xCoord;
-        this.y=yCoord;
+
         generateMoves() ;
         getAvailableMoves();
     }
@@ -22,35 +21,35 @@ public class Plus extends ChessPiece {
     public void generateMoves() {
         availableMoves.clear();
         
-        availableMoves.add(new Point(x, y+1));
-        availableMoves.add(new Point(x, y+2));
-        availableMoves.add(new Point(x, y+3));
-        availableMoves.add(new Point(x, y+4));
-        availableMoves.add(new Point(x, y+5));
-        availableMoves.add(new Point(x, y+6));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y+1));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y+2));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y+3));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y+4));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y+5));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y+6));
         
-        availableMoves.add(new Point(x, y-1));
-        availableMoves.add(new Point(x, y-2));
-        availableMoves.add(new Point(x, y-3));
-        availableMoves.add(new Point(x, y-4));
-        availableMoves.add(new Point(x, y-5));
-        availableMoves.add(new Point(x, y-6));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y-1));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y-2));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y-3));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y-4));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y-5));
+        availableMoves.add(new Point(this.getLocation().x, this.getLocation().y-6));
         
-        availableMoves.add(new Point(x+1, y));
-        availableMoves.add(new Point(x+2, y));
-        availableMoves.add(new Point(x+3, y));
-        availableMoves.add(new Point(x+4, y));
-        availableMoves.add(new Point(x+5, y));
-        availableMoves.add(new Point(x+6, y));
-        availableMoves.add(new Point(x+7, y));
+        availableMoves.add(new Point(this.getLocation().x+1, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x+2, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x+3, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x+4, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x+5, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x+6, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x+7, this.getLocation().y));
         
-        availableMoves.add(new Point(x-1, y));
-        availableMoves.add(new Point(x-2, y));
-        availableMoves.add(new Point(x-3, y));
-        availableMoves.add(new Point(x-4, y));
-        availableMoves.add(new Point(x-5, y));
-        availableMoves.add(new Point(x-6, y));
-        availableMoves.add(new Point(x-7, y));
+        availableMoves.add(new Point(this.getLocation().x-1, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x-2, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x-3, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x-4, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x-5, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x-6, this.getLocation().y));
+        availableMoves.add(new Point(this.getLocation().x-7, this.getLocation().y));
         
         
         
