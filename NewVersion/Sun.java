@@ -38,7 +38,28 @@ public class Sun extends ChessPiece{
             availableMoves.add(new Point(x+1, y-1));
             availableMoves.add(new Point(x+1, y+1));
         }
-		
+	while(friendlyPieces()!=null)
+        {
+            if(friendlyPieces(x,y) == true)
+            {
+          
+                availableMoves.remove(Point(x-1, y+1));
+                availableMoves.remove(Point(x-1, y-1));
+         
+                availableMoves.remove(Point(x+1, y-1));
+                availableMoves.remove(Point(x+1, y+1)); 
+            }
+        }
+        
+        // Iterate through all illegal possible moves (eg. a move that is outside the grid) and remove them	
+        Iterator<Point> iter = availableMoves.iterator();
+
+        while(iter.hasNext()){
+            Point move = iter.next();
+            if(move.x > 7 || move.x < 0 || move.y > 8 || move.y < 0){
+                iter.remove();
+            }
+        }	
 	}
 
 	@Override
